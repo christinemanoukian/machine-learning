@@ -72,5 +72,5 @@ class Matrix:
             for i in range(len(self.elements[0])):
                 item = self.elements[0][i]
                 smaller_matrix = Matrix(self.get_smaller_matrix(i))
-                result += (-1) ** i * item * smaller_matrix.calc_determinant()
+                result += (-1)**i * item * smaller_matrix.calc_determinant()
         return result
