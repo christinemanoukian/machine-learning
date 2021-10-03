@@ -95,3 +95,23 @@ if G.calc_determinant() != 0:
 H = Matrix([[1,2], [4,3], [4,1]])
 if H.calc_determinant() != 'cannot find determinant':
     print('failed to calculate determinant')
+
+I = Matrix([[4,-3,1], [-2,1,-3], [1,-1,2]])
+Ir = I.rref()
+if Ir.elements != [[1,0,0], [0,1,0], [0,0,1]]:
+    print('Actual matrix does not equal intended matrix')
+
+J = Matrix([[4,-3,1], [-2,1,-3], [-2,1,-3]])
+Jr = J.rref()
+if Jr.elements != [[1,0,4], [0,1,5], [0,0,0]]:
+    print('Actual matrix does not equal intended matrix')
+
+K = Matrix([[3,3.6,0], [5,6,4], [0,0,4]])
+Kr = K.rref()
+if Kr.elements != [[1,1.2,0], [0,0,1], [0,0,0]]:
+    print('Actual matrix does not equal intended matrix')
+
+L = Matrix([[0,1,-2,3], [-1,0,1,-2], [3,-2,5,4]])
+Lr = L.rref()
+if Lr.elements != [[1,0,0,3], [0,1,0,5], [0,0,1,1]]:
+    print('Actual matrix does not equal intended matrix')

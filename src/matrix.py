@@ -74,3 +74,74 @@ class Matrix:
                 smaller_matrix = Matrix(self.get_smaller_matrix(i))
                 result += (-1)**i * item * smaller_matrix.calc_determinant()
         return result
+
+    def copy(self):
+        result = [[num for num in row] for row in self.elements]
+        return Matrix(result)
+
+    def get_pivot_row(self, col_ind):
+        for row in range(self.num_rows):
+            initial = True
+            for i in range(col_ind):
+                if self.elements[row][i] != 0:
+                    initial = False
+            if self.elements[row][col_ind] != 0 and initial:
+                return row
+        return None
+
+    def swap_rows(self, row1, row2):
+        result = self.copy()
+        result.elements[row1], result.elements[row2] = result.elements[row2], result.elements[row1]
+        return result
+
+    def num_not_zero(self, row_ind):
+        for i in range(self.num_cols):
+            num = self.elements[row_ind][i]
+            if num != 0:
+                return num
+
+    def make_value_one(self, row_ind):
+        result = self.copy()
+        column = result.num_not_zero(row_ind)
+        for i in range(len(result.elements[row_ind])):
+            result.elements[row_ind][i] = result.elements[row_ind][i] / column
+        return result
+
+    def ind_not_zero(self, row_ind):
+        for i in range(self.num_cols):
+            if self.elements[row_ind][i] != 0:
+                return i
+
+    def make_below_zero(self, row_ind):
+        result = self.copy()
+        ind = result.ind_not_zero(row_ind)
+        num = result.num_not_zero(ind)
+        for row in result.elements[row_ind + 1:]:
+            multiplying_num = row[ind] / result.elements[row_ind][ind]
+            for i in range(result.num_cols):
+                row[i] -= multiplying_num * result.elements[row_ind][i]
+        return result
+
+    def make_above_zero(self, row_ind):
+        result = self.copy()
+        ind = result.ind_not_zero(row_ind)
+        num = result.num_not_zero(ind)
+        for row in result.elements[:row_ind]:
+            multiplying_num = row[ind] / result.elements[row_ind][ind]
+            for i in range(result.num_cols):
+                row[i] -= multiplying_num * result.elements[row_ind][i]
+        return result
+
+    def rref(self):
+        result = self.copy()
+        row_ind = 0
+        for col_ind in range(result.num_cols):
+            pivot_row = result.get_pivot_row(col_ind)
+            if pivot_row is not None:
+                if pivot_row != row_ind:
+                    result = result.swap_rows(row_ind, pivot_row)
+                result = result.make_value_one(row_ind)
+                result = result.make_above_zero(row_ind)
+                result = result.make_below_zero(row_ind)
+                row_ind += 1
+        return result
