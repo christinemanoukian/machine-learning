@@ -145,3 +145,44 @@ class Matrix:
                 result = result.make_below_zero(row_ind)
                 row_ind += 1
         return result
+
+    def identity(self):
+        result = [[0 for x in range(self.num_cols)] for y in range(self.num_rows)]
+        x = 0
+        i = 0
+        while x >= 0 and i >= 0:
+            if x == self.num_rows or i == self.num_cols:
+                break
+            else:
+                result[x][i] += 1
+                x += 1
+                i += 1
+        return Matrix(result)
+
+    def combine(self):
+        left_side = self.copy()
+        left = left_side.elements
+        right_side = left_side.identity()
+        result = []
+        for i in range(len(left)):
+            result.append(left[i] + right_side.elements[i])
+        return Matrix(result)
+    
+    def take_apart(self):
+        end = self.num_rows
+        right_side = []
+        for i in range(self.num_rows):
+            right_side.append(self.elements[i][end:])
+        return Matrix(right_side)
+
+    def inverse(self):
+        if self.num_rows != self.num_cols:
+            return 'no inverse'
+        elif self.calc_determinant() == 0:
+            return 'no inverse'
+        else:
+            result = self.copy()
+            result = result.combine()
+            result = result.rref()
+            result = result.take_apart()
+            return result

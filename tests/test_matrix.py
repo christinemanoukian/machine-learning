@@ -115,3 +115,26 @@ L = Matrix([[0,1,-2,3], [-1,0,1,-2], [3,-2,5,4]])
 Lr = L.rref()
 if Lr.elements != [[1,0,0,3], [0,1,0,5], [0,0,1,1]]:
     print('Actual matrix does not equal intended matrix')
+
+M = Matrix([[2,1,1], [3,2,1], [2,1,2]])
+Mi = M.inverse()
+if Mi.elements != [[3,-1,-1], [-4,2,1], [-1,0,1]]:
+    print('failed to calculate inverse')
+
+N = Matrix([[1,2], [3,4], [5,6]])
+if N.inverse() != 'no inverse':
+    print('failed to calculate inverse')
+
+O = Matrix([[2,3], [4,6]])
+if O.inverse() != 'no inverse':
+    print('failed to calculate inverse')
+
+P = Matrix([[1,0,0,1], [0,2,1,2], [2,1,0,1], [2,0,1,4]])
+Pi = P.inverse()
+if Pi.elements != [[-2,-.5,1,.5], [1,.5,0,-.5], [-8,-1,2,2], [3,.5,-1,-.5]]:
+    print('failed to calculate inverse')
+
+Q = Matrix([[4,5], [0,1]])
+Qi = Q.inverse()
+if Qi.elements != [[.25, -1.25], [0,1]]:
+    print('failed to calculate inverse')
