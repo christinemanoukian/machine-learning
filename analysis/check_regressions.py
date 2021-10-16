@@ -1,7 +1,6 @@
 import sys
 sys.path.append('src')
 from matrix import Matrix
-
 from numpy import log as ln
 
 
