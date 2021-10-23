@@ -84,10 +84,6 @@ E = Matrix([[5,5,3], [1,9,6], [6,8,8]])
 if E.calc_determinant() != 122:
     print('failed to calculate determinant')
 
-F = Matrix([[2,5,2,2], [6,7,6,6], [2,5,5,5], [3,8,8,3]])
-if F.calc_determinant() != 1030:
-    print('failed to calculate determinant')
-
 G = Matrix([[3,1], [6,2]])
 if G.calc_determinant() != 0:
     print('failed to calculate determinant')
@@ -138,3 +134,15 @@ Q = Matrix([[4,5], [0,1]])
 Qi = Q.inverse()
 if Qi.elements != [[.25, -1.25], [0,1]]:
     print('failed to calculate inverse')
+
+#E = Matrix([[5,5,3], [1,9,6], [6,8,8]])
+if E.determinant_by_rref() != 122:
+    print('failed to calculate determinant')
+
+#G = Matrix([[3,1], [6,2]])
+if G.determinant_by_rref() != 0:
+    print('failed to calculate determinant')
+
+#H = Matrix([[1,2], [4,3], [4,1]])
+if H.determinant_by_rref() != 'no determinant':
+    print('failed to calculate determinant')

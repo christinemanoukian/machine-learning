@@ -147,14 +147,14 @@ class Matrix:
         return result
 
     def identity(self):
-        result = [[0 for x in range(self.num_cols)] for y in range(self.num_rows)]
+        result = [[0.0 for x in range(self.num_cols)] for y in range(self.num_rows)]
         x = 0
         i = 0
         while x >= 0 and i >= 0:
             if x == self.num_rows or i == self.num_cols:
                 break
             else:
-                result[x][i] += 1
+                result[x][i] += 1.0
                 x += 1
                 i += 1
         return Matrix(result)
@@ -167,7 +167,7 @@ class Matrix:
         for i in range(len(left)):
             result.append(left[i] + right_side.elements[i])
         return Matrix(result)
-    
+
     def take_apart(self):
         end = self.num_rows
         right_side = []
@@ -186,3 +186,27 @@ class Matrix:
             result = result.rref()
             result = result.take_apart()
             return result
+
+    def determinant_by_rref(self):
+        if self.num_rows != self.num_cols:
+            return 'no determinant'
+        elif self.rref().elements != self.identity().elements:
+            return 0
+        else:
+            result = self.copy()
+            row_ind = 0
+            swap_rows_count = 0
+            scaling_factor_count = 1
+            for col_ind in range(result.num_cols):
+                pivot_row = result.get_pivot_row(col_ind)
+                if pivot_row is not None:
+                    if pivot_row != row_ind:
+                        result = result.swap_rows(row_ind, pivot_row)
+                        swap_rows_count += 1
+                    scaling_factor_count *= result.elements[row_ind][col_ind]
+                    result = result.make_value_one(row_ind)
+                    result = result.make_above_zero(row_ind)
+                    result = result.make_below_zero(row_ind)
+                    row_ind += 1
+            sign = (-1) ** swap_rows_count
+            return int(sign * scaling_factor_count)
