@@ -1,0 +1,9 @@
+The rating for a sandwich with 5 pieces of roast beef and 0 tablespoons of peanut butter is about 8
+
+The rating for a sandwich with 5 pieces of roast beef and 5 tablespoons of peanut butter is about 12
+
+The rating that could be trusted is the sandwich with no peanut butter because the rating is less than 11. The 
+rating that can't be trusted is the sandwich with both roast beef and peanut butter and that's because it has a 
+rating greater than 10, even though the rating was supposed to be out of 10. This is possible because the 
+coefficients are after all just a number, and since the rating increase in a linear manner, it won't ever "cap off"
+at 10.
