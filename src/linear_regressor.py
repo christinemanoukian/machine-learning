@@ -7,7 +7,7 @@ class LinearRegressor:
     def __init__(self):
         self.coefficients = None
 
-    def fit(self, data):
+    def fit(self, data, interaction_terms):
         y = []
         for point in data:
             y_value = []
@@ -22,10 +22,22 @@ class LinearRegressor:
             x = []
             count = 0
             while count < len(point) - 1:
-                x.append(point[count])
+                x.append(point[count])                    
                 count += 1
+            if interaction_terms == True:
+                count1 = 0
+                count2 = 1
+                while count1 <= len(point) - 3 and count2 <= len(point) - 1:
+                    if count2 == len(point) - 1:
+                        count2 = 1
+                        count1 += 1
+                    if count1 >= count2:
+                        count2 += 1
+                    else:
+                        x.append(point[count1] * point[count2])
+                        count2 += 1
             x.append(1)                
-            X.append(x)
+            X.append(x) 
         X = Matrix(X)
         Xt = X.transpose()
         XtX = Xt.matrix_multiply(X)

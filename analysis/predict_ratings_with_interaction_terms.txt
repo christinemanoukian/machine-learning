@@ -1,0 +1,8 @@
+The rating for a sandwich with 5 pieces of roast beef and 0 tablespoons of peanut butter is about 8
+
+The rating for a sandwich with 5 pieces of roast beef and 5 tablespoons of peanut butter is about -5
+
+I would say these ratings are just as reasonable as before. 
+
+The rating for 5 pieces of roast beef and 5 tablespoons of peanut butter is negative, but there can't be a negative 
+rating.
