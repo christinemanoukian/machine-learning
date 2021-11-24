@@ -204,9 +204,14 @@ class Matrix:
                         result = result.swap_rows(row_ind, pivot_row)
                         swap_rows_count += 1
                     scaling_factor_count *= result.elements[row_ind][col_ind]
+                    print(scaling_factor_count)
                     result = result.make_value_one(row_ind)
                     result = result.make_above_zero(row_ind)
                     result = result.make_below_zero(row_ind)
                     row_ind += 1
             sign = (-1) ** swap_rows_count
             return int(sign * scaling_factor_count)
+
+
+M = Matrix([[2,4,6], [1,2,2], [4,0,8]])
+print(M.determinant_by_rref())
