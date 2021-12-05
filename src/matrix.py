@@ -4,6 +4,27 @@ class Matrix:
         self.num_cols = len(arr[0])
         self.num_rows = len(arr)
 
+    def __add__(self, other):
+        return self.add(other)
+    
+    def __sub__(self, other):
+        return self.subtract(other)
+    
+    def __mul__(self, scalar):
+        return self.scalar_multiply(scalar)
+
+    def __rmul__(self, scalar):
+        return self.scalar_multiply(scalar)
+
+    def __matmul__(self, other):
+        return self.matrix_multiply(other)
+    
+    def __pow__(self, exp):
+        return self.exponent(exp)
+
+    def __eq__(self, other):
+        return self.elements == other.elements
+
     def print(self):
         for lst in self.elements:
             print(lst)
@@ -204,14 +225,19 @@ class Matrix:
                         result = result.swap_rows(row_ind, pivot_row)
                         swap_rows_count += 1
                     scaling_factor_count *= result.elements[row_ind][col_ind]
-                    print(scaling_factor_count)
                     result = result.make_value_one(row_ind)
                     result = result.make_above_zero(row_ind)
                     result = result.make_below_zero(row_ind)
                     row_ind += 1
             sign = (-1) ** swap_rows_count
             return int(sign * scaling_factor_count)
-
-
-M = Matrix([[2,4,6], [1,2,2], [4,0,8]])
-print(M.determinant_by_rref())
+    
+    def exponent(self, exp):
+        answer = Matrix(self.elements)
+        if answer.num_cols != answer.num_rows:
+            print("doesn't work")
+        else:
+            while exp > 1:
+                answer = answer.matrix_multiply(Matrix(self.elements))
+                exp -= 1
+            return answer

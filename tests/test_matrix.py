@@ -4,13 +4,16 @@ from matrix import Matrix
 
 A = Matrix([[1,2], [3,4]])
 other_matrix = Matrix([[1,1], [1,1]]) 
-other_matrix_2 = Matrix([[2,2], [2,2]]) 
+other_matrix_2 = Matrix([[2,2], [2,2]])
+other_matrix_3 = Matrix([[1,2], [3,4]]) 
 At = A.transpose()
-Aat = A.add(At)
-Aa = A.add(other_matrix)
-As = A.subtract(other_matrix)
-Asm = A.scalar_multiply(2)
-Am = A.matrix_multiply(other_matrix_2)
+Aat = A + At
+Aa = A + other_matrix
+As = A - other_matrix
+Asm = A * 2
+Am = A @ other_matrix_2
+Ae = A ** 2
+check_for_equality = A == other_matrix_3
 if At.elements != [[1,3], [2,4]]:
     print('Actual matrix does not equal intended matrix') 
 if Aat.elements != [[2,5], [5,8]]:
@@ -23,14 +26,20 @@ if Asm.elements != [[2,4], [6,8]]:
     print('Actual matrix does not equal intended matrix')
 if Am.elements != [[6,6],[14,14]]:
     print('Actual matrix does not equal intended matrix')
+if Ae.elements != [[7, 10], [15, 22]]:
+    print('Actual matrix does not equal intended matrix')
+if check_for_equality != True:
+    print('test failed')
 
 B = Matrix([[1,2,3], [4,5,6]])
 other_matrix = Matrix([[1,1,1], [1,1,1]])
 other_matrix_2 = Matrix([[2,2,2], [2,2,2]])
+other_matrix_3 = Matrix([[1,2,3], [4,5,5]])
 Bt = B.transpose()
-Ba = B.add(other_matrix)
-Bs = B.subtract(other_matrix)
-Bsm = B.scalar_multiply(2)
+Ba = B + other_matrix
+Bs = B - other_matrix
+Bsm = B * 2
+check_for_equality = B == other_matrix_3
 if Bt.elements != [[1,4], [2,5], [3,6]]:
     print('Actual matrix does not equal intended matrix')
 if Ba.elements != [[2,3,4], [5,6,7]]:
@@ -41,15 +50,17 @@ if Bsm.elements != [[2,4,6], [8,10,12]]:
     print('Actual matrix does not equal intended matrix')
 if B.matrix_multiply(other_matrix_2) != 'cannot multiply matrices':
     print('failed')
+if check_for_equality != False:
+    print('test failed')
 
 C = Matrix([[1,2], [3,4], [5,6]])
 other_matrix = Matrix([[1,1], [1,1], [1,1]])
 other_matrix_2 = Matrix([[1,2,3,4], [3,4,1,5]])
 Ct = C.transpose()
-Ca = C.add(other_matrix)
-Cs = C.subtract(other_matrix)
-Csm = C.scalar_multiply(2)
-Cm = C.matrix_multiply(other_matrix_2)
+Ca = C + other_matrix
+Cs = C - other_matrix
+Csm = C * 2
+Cm = C @ other_matrix_2
 if Ct.elements != [[1,3,5], [2,4,6]]:
     print('Actual matrix does not equal intended matrix')
 if Ca.elements != [[2,3], [4,5], [6,7]]:
@@ -65,10 +76,10 @@ D = Matrix([[1,2,3], [4,5,6], [7,8,9]])
 other_matrix = Matrix([[0,1,2], [3,4,5], [6,7,8]])
 other_matrix_2 = Matrix([[2,3,4], [5,6,7], [8,9,0]])
 Dt = D.transpose()
-Da = D.add(other_matrix)
-Ds = D.subtract(other_matrix)
-Dsm = D.scalar_multiply(9)
-Dm = D.matrix_multiply(other_matrix_2)
+Da = D + other_matrix
+Ds = D - other_matrix
+Dsm = D * 9
+Dm = D @ other_matrix_2
 if Dt.elements != [[1,4,7], [2,5,8], [3,6,9]]:
     print('Actual matrix does not equal intended matrix')
 if Da.elements != [[1,3,5], [7,9,11], [13,15,17]]:

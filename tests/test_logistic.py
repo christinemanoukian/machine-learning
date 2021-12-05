@@ -1,5 +1,3 @@
-# I made another test file for the logistic regression because for the last one, none of them had bounds and so it would throw off all the data / answers
-
 import sys
 sys.path.append('src')
 from logistic_regressor import LogisticRegressor
