@@ -1,6 +1,11 @@
-def minimize(fprime, x0, alpha, num_iterations):
-    answer = x0
+def minimize(gradient, initial_point, alpha, num_iterations):
+    for point in initial_point:
+        point = point
     while num_iterations > 0:
-        answer = answer - alpha * fprime(answer)
+        for point in initial_point:
+            point[0] = point[0] - alpha * gradient(point[0])
         num_iterations -= 1
-    return round(answer, 2)
+    return initial_point
+
+def gradient(x):
+    return 2*x + 2
