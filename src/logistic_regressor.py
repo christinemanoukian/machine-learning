@@ -85,7 +85,8 @@ class LogisticRegressor:
         result = round(result, 1)
         return result
 
-reg = LogisticRegressor(0, 10)
-data = [[0,0,1], [1,0,2], [2,0,4], [4,0,8], [6,0,9], [0,2,2], [0,4,5], [0,6,7], [0,8,6], [2,2,1], [3,4,1]]
-interaction_terms = True
+reg = LogisticRegressor(.1, 10)
+data = [[2,.9], [3,.95], [4,1]]
+interaction_terms = False
 reg.fit(data, interaction_terms)
+print(reg.coefficients)
