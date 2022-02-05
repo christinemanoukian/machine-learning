@@ -38,8 +38,7 @@ def reduce_rss(a, b, c, alpha, num_iterations):
         b_old = b_new
         c_old = c_new
         num_iterations -= 1
-    print(a_old)
-    print(b_old)
-    print(c_old)
+    rss = (c_old - 2)**2 + (a_old + b_old + c_old)**2 + (4*a_old + 2*b_old + c_old - 1)**2 + (9*a_old + 3*b_old + c_old - 1)**2
+    return rss
 
-print(reduce_rss(1,0,0,.00001,1000000))
+print(reduce_rss(1,0,0,.008,952))
