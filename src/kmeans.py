@@ -69,6 +69,6 @@ initial_clusters = {
     3: [2,5,8,11,14,17]
     }
 
-kmeans = KMeans(initial_clusters, data)
-kmeans.run()
-print(kmeans.clusters)
+#kmeans = KMeans(initial_clusters, data)
+#kmeans.run()
+#print(kmeans.clusters)
