@@ -241,3 +241,7 @@ class Matrix:
                 answer = answer.matrix_multiply(Matrix(self.elements))
                 exp -= 1
             return answer
+
+
+#test = Matrix([[1,2], [3,4], [5,6]])
+#test.print()

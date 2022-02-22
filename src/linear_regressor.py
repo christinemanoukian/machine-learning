@@ -1,6 +1,7 @@
 import sys
 sys.path.append('src')
 from matrix import Matrix
+import matplotlib.pyplot as plt
 
 
 class LinearRegressor:
@@ -49,6 +50,7 @@ class LinearRegressor:
             final.append(lst[0])
         final.insert(0, final.pop())
         self.coefficients = final
+        return final
 
     def predict(self, lst):
         result = self.coefficients[0]
