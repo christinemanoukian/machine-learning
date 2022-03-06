@@ -39,3 +39,11 @@ if a.breadth_first(1) != [1,2,3,4,5,6]:
     print('breadth_first failed on input 1')
 if a.depth_first(1) != [1,2,4,3,6,5]:
     print('depth_first failed on input 1')
+
+p = Graph([(0,1), (1,2), (1,4), (4,5), (4,3), (3,1), (3,6)])
+if p.calc_distance(0,3) != 3:
+    print('calc_distance failed on input (0,3)')
+if p.calc_distance(0,5) != 3:
+    print('calc_distance failed on input (0,5)')
+if p.calc_distance(2,4) != False:
+    print('calc_distance failed on input (2,4)')

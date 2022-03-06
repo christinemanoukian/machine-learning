@@ -7,6 +7,12 @@ class Node:
 class Graph:
     def __init__(self, edges):
         self.edges = edges
+        self.nodes = {}
+        for edge in edges:
+            if edge[0] not in self.nodes:
+                self.nodes[edge[0]] = Node(edge[0])
+            if edge[1] not in self.nodes:
+                self.nodes[edge[1]] = Node(edge[1])
 
     def get_children(self, node):
         result = []
@@ -51,31 +57,38 @@ class Graph:
 
     def set_distance_and_previous(self, start_index):
         queue = [start_index]
-        visited = {}
-        order = []
+        visited = {start_index: True}
+        order = [start_index]
         while queue != []:
             node = queue[0]
-            order.append(node)
-            visited[node] = True
-            current_node = Node(node)
+            current_node = self.nodes[node]
             for child in self.get_children(node):
                 if child not in visited and child not in queue:
                     queue.append(child)
-                    self.previous = current_node
-                    self.distance = current_node.distance + 1
+                    self.nodes[child].previous = current_node
+                    self.nodes[child].distance = current_node.distance + 1
+                    order.append(child)
+                    visited[child] = True
             queue.remove(queue[0])
         return order
 
-
     def calc_distance(self, starting_node_index, ending_node_index):
         self.set_distance_and_previous(starting_node_index)
-        ending_node = Node(ending_node_index)
+        ending_node = self.nodes[ending_node_index]
         if ending_node_index not in self.set_distance_and_previous(starting_node_index):
             return False
         else:
             return ending_node.distance
 
-
-
-graph = Graph([(0,1), (1,2), (1,4), (4,5), (4,3), (3,1), (3,6)])
-print(graph.calc_distance(0, 3))
+    def calc_shortest_path(self, starting_node_index, ending_node_index):
+        self.set_distance_and_previous(starting_node_index)
+        if self.calc_distance(starting_node_index, ending_node_index) == False:
+            return False
+        else:
+            path = [ending_node_index]
+            current_node = self.node[ending_node_index]
+            ending_node = self.nodes[starting_node_index]
+            while current_node != ending_node:
+                current_node = current_node.previous
+                path.append(current_node.id)
+            return path[::-1]
