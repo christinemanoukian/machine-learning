@@ -1,8 +1,8 @@
 def partial_a(a, b):
-    return 26*a+10*b-42
+    return -2*(-a-b-2)+2*(a+b)+16*(8*a+2*b-4)
 
 def partial_b(a, b):
-    return 10*a+6*b-18
+    return -2*(-a-b-2)+2*(a+b)+4*(8*a+2*b-4)
 
 def reduce_rss(a, b, alpha, num_iterations):
     a_old = a
@@ -41,4 +41,4 @@ def reduce_rss(a, b, c, alpha, num_iterations):
     rss = (c_old - 2)**2 + (a_old + b_old + c_old)**2 + (4*a_old + 2*b_old + c_old - 1)**2 + (9*a_old + 3*b_old + c_old - 1)**2
     return rss
 
-print(reduce_rss(1,0,0,.008,952))
+print(reduce_rss(1,-2,.01,1))

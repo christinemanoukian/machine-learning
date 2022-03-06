@@ -28,37 +28,37 @@ class EulerEstimator:
         t = []
         a = []
         b = []
-        c = []
+#        c = []
         for point in answer:
             t.append(point[0])
             a.append(point[1]['a'])
             b.append(point[1]['b'])
-            c.append(point[1]['c'])
+#            c.append(point[1]['c'])
         print(t)
         print(a)
         print(b)
-        print(c)
+#        print(c)
         return answer
 
 
-initial_state = {'a': -.45, 'b': -.05, 'c': 0}
-initial_point = (-.4, initial_state)
+initial_state = {'a': 1, 'b': 3}
+initial_point = (2, initial_state)
 
 def da_dt(t, state):
-    return state['a'] + 1
+    return t - state['b']**2
 
 def db_dt(t, state):
-    return state['a'] + state['b']
+    return 2 - state['a'] * state['b']
 
-def dc_dt(t, state):
-    return 2 * state['b'] + 3*t
+#def dc_dt(t, state):
+#    return 2 * state['b'] + 3*t
 
 derivatives = {
     'a': da_dt,
     'b': db_dt,
-    'c': dc_dt
+#    'c': dc_dt
 }
 
 euler = EulerEstimator(derivatives)
 #print(euler.calc_derivative_at_point(initial_point))
-print(euler.calc_estimated_points(initial_point, .01, 100))
+print(euler.calc_estimated_points(initial_point, .5, 2))

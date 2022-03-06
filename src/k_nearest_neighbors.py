@@ -6,6 +6,7 @@ class KNearestNeigborsClassifier:
         self.k = k
         self.dict = {}
         self.distances = []
+        self.classification = None
 
     def fit(self, portions, types, classification_index):
         types_dict = {}
@@ -68,4 +69,4 @@ class KNearestNeigborsClassifier:
                     types.append(key)
         nearest_neighbor = ''
         nearest_neighbor = mode(types)
-        return nearest_neighbor
+        self.classification = nearest_neighbor

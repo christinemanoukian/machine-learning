@@ -14,7 +14,8 @@ plt.scatter(x_coordinates, y_coordinates)
 def linear(x):
     return -55.799999999999955 + 30.10909090909091*x
 
-x_list = [num for num in range(0,21)]
+x_list = [num/1000 for num in range(0,20000)]
+print(x_list)
 y_list = [linear(x) for x in x_list]
 plt.plot(x_list, y_list, color='red')
 
@@ -23,7 +24,6 @@ plt.plot(x_list, y_list, color='red')
 def quadratic(x):
     return -10.549999999999969 + 7.484090909090668*x + 2.056818181818184*x**2
 
-x_list = [num for num in range(0,21)]
 y_list = [quadratic(x) for x in x_list]
 plt.plot(x_list, y_list, color='yellow')
 

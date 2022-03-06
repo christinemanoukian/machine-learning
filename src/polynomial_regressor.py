@@ -42,7 +42,7 @@ class PolynomialRegressor:
         return final
 
 
-data = [(1,3), (2,10), (3,40), (4,25), (5,90), (6,100), (7,180), (8,140), (9,250), (10,260)]
+data = [(-1,2),(1,0),(2,4)]
 Pr = PolynomialRegressor()
-Pr.fit(data, 7)
-#print(Pr.coefficients)
+Pr.fit(data, 3)
+print(Pr.coefficients)
