@@ -47,3 +47,13 @@ if p.calc_distance(0,5) != 3:
     print('calc_distance failed on input (0,5)')
 if p.calc_distance(2,4) != False:
     print('calc_distance failed on input (2,4)')
+if p.calc_shortest_path(0,3) != [0,1,4,3]:
+    print('calc_shortest_path fail on input (0,3)')
+if p.calc_shortest_path(3,5) != [3,1,4,5]:
+    print('calc_shortest_path fail on input (3,5)')
+if p.calc_shortest_path(0,5) != [0,1,4,5]:
+    print('calc_shortest_path fail on input (0,5)')
+if p.calc_shortest_path(4,1) != [4,3,1]:
+    print('calc_shortest_path fail on input (4,1)')
+if p.calc_shortest_path(2,4) != False:
+    print('calc_shortest_path fail on input (2,4)')

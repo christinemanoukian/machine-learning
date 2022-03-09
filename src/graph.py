@@ -85,10 +85,10 @@ class Graph:
         if self.calc_distance(starting_node_index, ending_node_index) == False:
             return False
         else:
-            path = [ending_node_index]
-            current_node = self.node[ending_node_index]
+            shortest_path = [ending_node_index]
+            current_node = self.nodes[ending_node_index]
             ending_node = self.nodes[starting_node_index]
             while current_node != ending_node:
                 current_node = current_node.previous
-                path.append(current_node.id)
-            return path[::-1]
+                shortest_path.append(current_node.index)
+            return shortest_path[::-1]
