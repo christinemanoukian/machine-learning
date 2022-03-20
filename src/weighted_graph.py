@@ -14,11 +14,7 @@ class WeightedGraph:
                 self.nodes[edge[1]] = Node(edge[1])
 
     def get_children(self, node):
-        result = []
-        for edge in self.edges:
-            if edge[0] == node:
-                result.append(edge[1])
-        return result
+        return [self.nodes[edge[1]] for edge in self.edges if edge[0] == node.index]
 
     def calc_distance(self, starting_node_index, ending_node_index):
         current_node = self.nodes[starting_node_index]
@@ -29,23 +25,20 @@ class WeightedGraph:
         # print(self.get_children(current_node.index)) #When I print this here it prints the correct thing which is [4,0]
         while current_node.index != ending_node_index:
             # print(self.get_children(current_node.index)) #if i print it inside the while loop it prints [8,3] an infinite amount of times
-            for child in self.get_children(current_node.index):
+            for child in self.get_children(current_node):
                 # print(child) #Here it's printing 8 and 3 and infinite amount of times and idk why
-                child = self.nodes[child]
-                # print(child) #if I try to print the child, it prints it an infinite amount of times and idk why
                 if child not in visited:
                     child.distance = min(child.distance, current_node.distance + self.weights[(current_node.index, child.index)])
                     visited.append(child)
             #print(visited)
-            node_for_shortest_distance = None
+            closest_node = None
             for node in visited:
-                node = Node(node)
-                if node_for_shortest_distance is None:
-                    node_for_shortest_distance = node
+                if closest_node is None:
+                    closest_node = node
                 if node in visited:
-                    if node.distance < node_for_shortest_distance.distance:
-                        node_for_shortest_distance = node
-            current_node = node_for_shortest_distance
+                    if node.distance < closest_node.distance:
+                        closest_node = node
+            current_node = closest_node
         return current_node.distance
 
 
@@ -65,4 +58,4 @@ weights = {
     (8,0): 4, (0,8): 4
 }
 weighted_graph = WeightedGraph(weights)
-print(weighted_graph.calc_distance(8,0))
+print(weighted_graph.calc_distance(8,7))
