@@ -23,6 +23,7 @@ class WeightedGraph:
         current_node.distance = 0
         visited = []
         while current_node.index != ending_node_index:
+            print(current_node.index)
             print([node.index for node in self.get_children(current_node)])
             for child in self.get_children(current_node):
                 # print(child) #Here it's printing 8 and 3 and infinite amount of times and idk why
@@ -31,14 +32,14 @@ class WeightedGraph:
             visited.append(current_node)
             #print(visited)
             closest_node = None
-            for child in self.get_children(current_node):
-                if child not in visited:
-                    if closest_node is None:
-                        closest_node = child
-                    if child.distance < closest_node.distance:
-                        closest_node = child
+            for node in self.nodes.values()(current_node):
+                if node not in visited:
+                    if closest_node is None or node.distance < closest_node.distance:
+                        closest_node = node
             current_node = closest_node
-        return current_node.distance
+            if current_node is None:
+                break
+        return self.nodes[ending_node_index].distance
 
 
 #    def calc_shortest_path(self, starting_node_index, ending_node_index):
