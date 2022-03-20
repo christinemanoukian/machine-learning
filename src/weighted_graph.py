@@ -22,22 +22,21 @@ class WeightedGraph:
             self.nodes[node].distance = 9999999999
         current_node.distance = 0
         visited = []
-        # print(self.get_children(current_node.index)) #When I print this here it prints the correct thing which is [4,0]
         while current_node.index != ending_node_index:
-            # print(self.get_children(current_node.index)) #if i print it inside the while loop it prints [8,3] an infinite amount of times
+            print([node.index for node in self.get_children(current_node)])
             for child in self.get_children(current_node):
                 # print(child) #Here it's printing 8 and 3 and infinite amount of times and idk why
                 if child not in visited:
                     child.distance = min(child.distance, current_node.distance + self.weights[(current_node.index, child.index)])
-                    visited.append(child)
+            visited.append(current_node)
             #print(visited)
             closest_node = None
-            for node in visited:
-                if closest_node is None:
-                    closest_node = node
-                if node in visited:
-                    if node.distance < closest_node.distance:
-                        closest_node = node
+            for child in self.get_children(current_node):
+                if child not in visited:
+                    if closest_node is None:
+                        closest_node = child
+                    if child.distance < closest_node.distance:
+                        closest_node = child
             current_node = closest_node
         return current_node.distance
 
