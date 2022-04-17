@@ -15,7 +15,7 @@ def linear(x):
     return -55.799999999999955 + 30.10909090909091*x
 
 x_list = [num/1000 for num in range(0,20000)]
-print(x_list)
+print(x_list) 
 y_list = [linear(x) for x in x_list]
 plt.plot(x_list, y_list, color='red')
 
@@ -37,4 +37,4 @@ plt.plot(x_list, y_list, color='green')
 
 plt.xlim(0,20)
 plt.ylim(0,1000)
-plt.savefig('points.png')
+#plt.savefig('points.png')

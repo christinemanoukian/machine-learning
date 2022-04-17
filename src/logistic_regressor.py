@@ -89,4 +89,4 @@ reg = LogisticRegressor(.1, 10)
 data = [[2,.9], [3,.95], [4,1]]
 interaction_terms = False
 reg.fit(data, interaction_terms)
-print(reg.coefficients)
+#print(reg.coefficients)
