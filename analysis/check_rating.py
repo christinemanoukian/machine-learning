@@ -1,7 +1,7 @@
 import sys
 sys.path.append('src')
 from matrix import Matrix
-
+ 
 def calc_coefficients(data):
     y = []
     for lst in data:
